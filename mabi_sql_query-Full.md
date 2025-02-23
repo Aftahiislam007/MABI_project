@@ -9,7 +9,8 @@ CREATE TABLE master_product (
     product_name VARCHAR(255) NOT NULL,
     category VARCHAR(255) NOT NULL,
     SKU VARCHAR(255) NOT NULL,
-    FOREIGN KEY (product_pack_size_id) REFERENCES master_product_pack_size_type(id),
+    -- FOREIGN KEY (product_pack_size_id) REFERENCES master_product_pack_size_type(id),
+    product_pack_size_id INT NOT NULL,
     product_company VARCHAR(255) NOT NULL,
     company_type ENUM('own', 'others') DEFAULT 'own',
     dp_price DOUBLE NOT NULL,
@@ -21,12 +22,43 @@ CREATE TABLE master_product (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+-- DELIMITER //
+-- CREATE TRIGGER trigger_set_created_by
+-- BEFORE INSERT ON master_product
+-- FOR EACH ROW
+-- BEGIN
+--     SET NEW.created_by = 'System';
+-- END;
+-- //
+-- DELIMITER ;
+
+-- DELIMITER //
+-- CREATE TRIGGER trigger_set_updated_by
+-- BEFORE UPDATE ON master_product
+-- FOR EACH ROW
+-- BEGIN
+--     SET NEW.updated_by = 'System';
+-- END;
+-- //
+-- DELIMITER ;
+
+CREATE TABLE master_product_pack_size_type (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pack_size VARCHAR(255) NOT NULL,
+    pack_type VARCHAR(255) NOT NULL,
+    status  TINYINT(1) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+ALTER TABLE master_product ADD CONSTRAINT fk_product_product_pack_size_type FOREIGN KEY (master_product) REFERENCES master_product_pack_size_type (id);
 ```
 
 
 # Seperate Query based on Table
 
-## 1. master_product_pack_size_type
+## 1. master_product
 
 ### Table Creation 
 
@@ -47,14 +79,12 @@ CREATE TABLE master_product (
 
 ```sql
 CREATE TABLE master_product_pack_size_type (
- id int(11) PRIMARY KEY AUTO_INCREMENT,
-    pack_size varchar(50) NULL,
-    pack_type varchar(50) NULL,
-    status boolean,
-    createdAt DateTime,
-    updatedAt DateTime,
-    createdBy varchar(50),
-    updatedBy varchar(50)
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pack_size VARCHAR(255) NOT NULL,
+    pack_type VARCHAR(255) NOT NULL,
+    status  TINYINT(1),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 ```
 

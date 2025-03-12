@@ -68,19 +68,20 @@ CREATE TABLE master_product_ND_survey (
 );
 
 CREATE TABLE master_user (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    enroll_id VARCHAR(255) NOT NULL,
-    supervisor_id VARCHAR(255) NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    designation VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    contact_no VARCHAR(255) NOT NULL,
-    user_type VARCHAR(255) NOT NULL,
+    intId INT PRIMARY KEY AUTO_INCREMENT,
+    strEnrollId VARCHAR(255) NOT NULL,
+    strSupervisorId VARCHAR(255) NOT NULL,
+    strName VARCHAR(255) NOT NULL,
+    strDesignation VARCHAR(255) NOT NULL,
+    strEmail VARCHAR(255) NOT NULL,
+    strContactNo VARCHAR(255) NOT NULL,
+    strUserType VARCHAR(255) NOT NULL,
+    isActive  TINYINT(1) NOT NULL,
     status  TINYINT(1) NOT NULL,
-    created_by INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_by INT NULL,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    strCreatedBy VARCHAR(255) NOT NULL,
+    dteCreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    strUpdatedBy VARCHAR(255) NULL,
+    dteUpdatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE line (
@@ -451,19 +452,20 @@ ALTER TABLE master_product_ND_survey ADD CONSTRAINT fk_product_ND_product FOREIG
 
 ```sql
 CREATE TABLE master_user (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    enroll_id VARCHAR(255) NOT NULL,
-    supervisor_id VARCHAR(255) NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    designation VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    contact_no VARCHAR(255) NOT NULL,
-    user_type VARCHAR(255) NOT NULL,
+    intId INT PRIMARY KEY AUTO_INCREMENT,
+    strEnrollId VARCHAR(255) NOT NULL,
+    strSupervisorId VARCHAR(255) NOT NULL,
+    strName VARCHAR(255) NOT NULL,
+    strDesignation VARCHAR(255) NOT NULL,
+    strEmail VARCHAR(255) NOT NULL,
+    strContactNo VARCHAR(255) NOT NULL,
+    strUserType VARCHAR(255) NOT NULL,
+    isActive  TINYINT(1) NOT NULL,
     status  TINYINT(1) NOT NULL,
-    created_by INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_by INT NULL,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    strCreatedBy VARCHAR(255) NOT NULL,
+    dteCreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    strUpdatedBy VARCHAR(255) NULL,
+    dteUpdatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 ```
 
